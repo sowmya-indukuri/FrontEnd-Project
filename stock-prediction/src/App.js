@@ -2,6 +2,7 @@ import React from 'react';
 import InputBox from './InputBox';
 import TableBox from './TableBox';
 import GraphBox from './GraphBox';
+// import News from './News';
 import './App.css';
 
 
@@ -14,7 +15,7 @@ class App extends React.Component {
     showFilterData: false,
     show_Table: false,
     showGraphData: false,
-    lsArray: [],  
+    lsArray: ["AAPL"],  
     option: []
   };
   getResults = (data) => {
@@ -27,28 +28,55 @@ class App extends React.Component {
         console.log(this.state.table_Values);
     };
   };
+  getGraphResults = (code, graph_data) =>{
+    console.log(code);
+    console.log(graph_data);
+
+  }
   render(){
 
     return (
       <div className="main-container">
-        <div className="heading-container">
-          <div className="item-heading">
-              <h5>Stock Price Dashboard</h5>
 
-          </div>
+        <div className="heading-container">
+          
+              <h1 className="pageheading">Stock Price Dashboard</h1>
+
+         
 
         </div>
         
         <div className="input-container">
-          <div class="item-input">
+          
             <InputBox 
-            getResults = { this.getResults }> 
+            getResults = { this.getResults }
+            getGraphResults = {this. getGraphResults}>
             </InputBox>
 
-          </div>
+          
           
         </div>
-        <div className={ this.state.show_Table ? "table-container" : "" } >
+        <div className={ this.state.show_Table ? "graph-container" : "hidden-table-container" } >
+          
+                <GraphBox />
+          
+        </div>
+        <div className={ this.state.show_Table ? "table-container" : "hidden-table-container" } >
+      
+                <TableBox 
+                show_Table = { this.state.show_Table }
+                table_Values = { this.state.table_Values }
+                >
+                </TableBox>
+          
+        </div>
+        {/* <div>
+          <News 
+            lsArray = { this.state.lsArray}/>
+
+        </div> */}
+
+        {/* <div className={ this.state.show_Table ? "table-container" : "" } >
           <div class="grid-item item0">
                 <GraphBox />
           </div>
@@ -57,7 +85,7 @@ class App extends React.Component {
                 show_Table = { this.state.show_Table }
                 table_Values = { this.state.table_Values }>
                 </TableBox>
-          </div> 
+          </div>  */}
           
 
             
@@ -71,10 +99,17 @@ class App extends React.Component {
 
           
 
-        </div>
+        
         
           
           
+     
+          
+
+            
+                      
+            
+
       </div>
       
     );
