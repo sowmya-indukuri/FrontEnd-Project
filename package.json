@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/sowmya-indukuri/FrontEnd-Project/issues"
   },
-  "homepage": "https://github.com/sowmya-indukuri/FrontEnd-Project#readme"
+  "homepage": "https://github.com/sowmya-indukuri/FrontEnd-Project#readme",
+  "dependencies": {
+    "plotly.js": "^1.57.1",
+    "react-plotly.js": "^2.5.0"
+  }
 }

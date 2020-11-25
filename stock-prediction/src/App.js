@@ -10,7 +10,7 @@ class App extends React.Component {
   state = {
     table_Values: [],
     graphData: [],
-    activeStockValue: '',
+    currentStockCode: '',
     showFilterDOM: false,
     showFilterData: false,
     show_Table: false,
@@ -18,21 +18,36 @@ class App extends React.Component {
     lsArray: ["AAPL"],  
     option: []
   };
-  getResults = (data) => {
-    if(data !== "Symbol not supported"){
+  // getResults = (data) => {
+  //   if(data !== "Symbol not supported"){
+  //       this.setState({ 
+  //         table_Values: this.state.table_Values.concat(data),
+  //           showFilterDOM: true,
+  //           show_Table: true
+  //       });
+  //       console.log(this.state.table_Values);
+  //   };
+  // };
+  getResults = (code, data) => {
+    if(data.response !== "Symbol not supported"){
         this.setState({ 
-          table_Values: this.state.table_Values.concat(data),
+          table_Values: this.state.table_Values.concat(data.response),
+          currentStockCode: data.stockcode,
             showFilterDOM: true,
             show_Table: true
+        }, ()=>{
+          
+          console.log(this.state.table_Values);
+
         });
-        console.log(this.state.table_Values);
+        
     };
   };
-  getGraphResults = (code, graph_data) =>{
-    console.log(code);
-    console.log(graph_data);
+  // getGraphResults = (code, graph_data) =>{
+  //   console.log(code);
+  //   console.log(graph_data);
 
-  }
+  // }
   render(){
 
     return (
@@ -49,8 +64,7 @@ class App extends React.Component {
         <div className="input-container">
           
             <InputBox 
-            getResults = { this.getResults }
-            getGraphResults = {this. getGraphResults}>
+            getResults = { this.getResults }>
             </InputBox>
 
           
@@ -58,7 +72,9 @@ class App extends React.Component {
         </div>
         <div className={ this.state.show_Table ? "graph-container" : "hidden-table-container" } >
           
-                <GraphBox />
+                <GraphBox
+                currentStockCode = {this.state.currentStockCode} >
+                </GraphBox>
           
         </div>
         <div className={ this.state.show_Table ? "table-container" : "hidden-table-container" } >
@@ -70,11 +86,11 @@ class App extends React.Component {
                 </TableBox>
           
         </div>
-        {/* <div>
-          <News 
-            lsArray = { this.state.lsArray}/>
+        <div>
+          {/* <News 
+            lsArray = { this.state.lsArray}/> */}
 
-        </div> */}
+        </div>
 
         {/* <div className={ this.state.show_Table ? "table-container" : "" } >
           <div class="grid-item item0">
