@@ -1,122 +1,106 @@
 import React from 'react';
-import Chart from 'chart.js';
+import axios from 'axios';
+import { Line } from "react-chartjs-2";
+// import Plot from 'react-plotly.js';
+// import './GraphBox.css';
+
 class GraphBox extends React.Component{
-    // chartRef = React.createRef();
-    
-// //   componentDidUpdate() {
-    
-// //     // @condition: check if there is a viable response from the API call
-// //     if(this.props.showGraphData){
-      
-// //       var lowOrHighColor = 
-// //           this.props.graphData.y_axis[0] <
-// //           this.props.graphData.y_axis[this.props.graphData.y_axis.length - 1] 
-// //           ? '#81b737' : '#d54f4f';
+    constructor(props){
+        super(props);
+        this.state = {
+        };}
+    componentDidUpdate(pP){
+        if(pP.currentStockCode != this.props.currentStockCode){
+            console.log(this.props.currentStockCode);
+            let startDate = Math.round(new Date().getTime() / 1000);
+            let endDate = startDate - (72 * 3600);
+            const pointerToThis = this;
+          axios.get('https://finnhub.io/api/v1/stock/candle',{
+              
+            params:{
+                symbol: this.props.currentStockCode,
+                resolution: 5,
+                from: endDate,
+                to: startDate,
+                token: 'bu5pnnf48v6qku34c7vg'
 
-// //       // loops through all the graphData array and makes a graph individually
-// //       const myChartRef = this.chartRef.current.getContext("2d");
-// //       new Chart(myChartRef, {
-// //           type: "line",
-// //           data: {
-// //               labels: this.props.graphData.x_axis,
-// //               datasets: [
-// //                   {
-// //                       data: this.props.graphData.y_axis,
-// //                       backgroundColor: "rgba(0, 0, 0, 0)",
-// //                       borderColor: lowOrHighColor
-// //                   }
-// //               ]
-// //           },
-// //           options: {
-// //             responsive: true,
-// //             tooltips: {
-// //               enabled: true,
-// //             },
-// //             tooltips: {
-// //                 mode: 'point'
-// //             },
-// //             scales: {
-// //                 xAxes: [{
-// //                     ticks: {
-// //                       display: false
-// //                     },
-// //                     gridLines: {
-// //                       display: true
-// //                     },
-// //                     gridLines: {
-// //                       color: "rgba(0, 0, 0, 0)"
-// //                     }
-// //                 }],
-// //                 yAxes: [{
-// //                     ticks: {
-// //                       display: true,
-// //                       stepSize: 5
-// //                     },  
-// //                     gridLines: {
-// //                       display: false,
-// //                     },
-// //                     gridLines: {
-// //                       color: "rgba(0, 0, 0, 0)"
-// //                     }
-// //                 }]
-// //             },
-// //             legend: {
-// //                 display: false
-// //             },
-// //             elements: {
-// //               point:{
-// //                   radius: 0
-// //               }
-// //             }
-// //           }
-// //       });
-// //     }
-// //};
+            }})
+          .then((response) => {
+            // console.log({ JSON.stringify(new Date(response.data.t * 1000)).split('T')[0].replace('"', '') });
+            var y = response.data.c;
+            var x = response.data.t;
+            // console.log(typeof(y[0]));
+            this.setState({
+                Data: {
+                  labels: x,
+                  datasets: [
+                    {
+                      label: "Hourly",
+                      data: y,
+                      fill: true,
+                      lineTension: 0.1,
+                      backgroundColor: "#1C4E80",
+                      borderColor: "#1C4E80",
+                      borderCapStyle: "butt",
+                      borderJoinStyle: "miter",
+                      pointBorderColor: "#1C4E80",
+                      pointBackgroundColor: "#fff",
+                      pointBorderWidth: 1,
+                      pointHoverRadius: 5,
+                      pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                      pointHoverBorderColor: "rgba(220,220,220,1)",
+                      pointHoverBorderWidth: 2,
+                      pointRadius: 2,
+                      pointHitRadius: 10,
+                    },
+                  ],
+                },
+              });
+            
 
-//   convertToDate = (str) => {
-//     let date = new Date(str),
-//       mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-//       day = ("0" + date.getDate()).slice(-2);
-//     return [date.getFullYear(), mnth, day].join("-");
-//   };
+          })
+        }
+    }
 
-//   render() {
-//       return (
-//           <div className="main__chart" id={ 'myChart-' }>
-//             <div>
-//                 <h2 className="h5 mb-3 stockValue">
-//                   { this.props.graphData.stockValue }
-//                   { 
-//                     this.props.graphData.date_data 
-//                     ? 
-//                     <div className="ml-2 d-inline">
-//                       <span>
-//                       (
-//                       { this.convertToDate(this.props.graphData.date_data.filteredStartDate) } 
-//                       &nbsp;to&nbsp;
-//                       { this.convertToDate(this.props.graphData.date_data.filteredEndDate) }
-//                       )
-//                       </span> 
-//                     </div>
-//                     : <div className="ml-2 d-inline">(Last 72 Hours)</div> 
-//                   }
-//                 </h2>
-//                 <canvas 
-//                   className="myChart"
-//                   ref={this.chartRef}
-//                 /> 
-//             </div>
-//           </div>
-//       )
-//   }
-// };
-
-// // export default GraphCard;
     render(){
+        
         return(
-            <div>
+            <div className>
                 <h2>Graph</h2>
-
+                <Line
+                data={this.state.Data}
+                height={15}
+                width ={30}
+                options={{
+                  responsive: true,
+    
+                  scales: {
+                    xAxes: [
+                      {
+                        display: true,
+                      },
+                    ],
+                    yAxes: [
+                      {
+                        display: true,
+                      },
+                    ],
+                  },
+                  title:{
+                    display:true,
+                    text:'24 hours',
+                    fontSize:20
+                  },
+                  legend: {
+                      display: true,
+                      position: 'top',
+                    labels: {
+                      fontColor: "black",
+                      fontSize: 12,
+                    },
+                  },
+                }}
+              />
             </div>
 
         );
