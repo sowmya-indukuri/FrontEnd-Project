@@ -45,7 +45,7 @@ import React from 'react';
 import axios from 'axios';
 import { Line } from "react-chartjs-2";
 // import Plot from 'react-plotly.js';
-// import './GraphBox.css';
+import './GraphBox.css';
 
 class GraphBox extends React.Component{
     constructor(props){
@@ -75,12 +75,12 @@ class GraphBox extends React.Component{
             // console.log(typeof(y[0]));
             this.setState({
                 Data: {
-                  labels: y,
+                  labels: x,
                   datasets: [
                     {
                       label: "Hourly",
-                      data: x,
-                      fill: true,
+                      data: y,
+                      fill: false,
                       lineTension: 0.1,
                       backgroundColor: "#1C4E80",
                       borderColor: "#1C4E80",
@@ -108,7 +108,7 @@ class GraphBox extends React.Component{
     render(){
         
         return(
-            <div className>
+            <div className="graphClass">
                 <h2>Graph</h2>
                 <Line
                 data={this.state.Data}
@@ -116,6 +116,7 @@ class GraphBox extends React.Component{
                 width ={400}
                 options={{
                   responsive: true,
+                  maintainAspectRatio: false,
     
                   scales: {
                     xAxes: [
