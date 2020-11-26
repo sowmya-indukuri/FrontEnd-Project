@@ -62,13 +62,13 @@ class News extends React.Component{
 
                 }})
             .then((response) => {
-                console.log(response.data[0].headline);
+                // console.log(response.data[0].headline);
                 var headlines = "";
                 for(var i=0 ;i<response.data.length;i++){
                     headlines += response.data[i].headline + '.';
                     
                 }
-                console.log(headlines);
+                // console.log(headlines);
                 this.setState({Data : headlines},() =>{
 
                 })
