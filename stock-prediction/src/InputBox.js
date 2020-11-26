@@ -59,6 +59,7 @@ class InputBox extends React.Component{
                             // console.log(resp_data_graph.data);
 
                             // this.props.getResults(resp_data_table.data);
+                            resp_data_table.data.stockcode = stockcode;
                             this.props.getResults(true, {stockcode: stockcode, response: resp_data_table.data});
                             console.log(resp_data_table.data)
                         }
