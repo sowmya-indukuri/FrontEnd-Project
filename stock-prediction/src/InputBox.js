@@ -36,7 +36,7 @@ class InputBox extends React.Component{
                         }
                     });
 
-                    var resp_data_graph = await axios.get('https://finnhub.io/api/v1/quote/stock/candle',{
+                    var resp_data_graph = await axios.get('https://finnhub.io/api/v1/stock/candle',{
                         params:{
                             symbol: stockcode,
                             resolution: 5,
@@ -50,15 +50,16 @@ class InputBox extends React.Component{
                     this.setState({inputArray: this.state.inputArray.concat(stockcode)},
                     () => {
                         if(resp_data_table.data.c == 0 && resp_data_table.data.h == 0 && resp_data_table.data.l == 0 && resp_data_table.data.o == 0 && resp_data_table.data.pc == 0 && resp_data_table.data.t == 0){
-                            this.props.getGraphResults("no_data", '');
+                            // this.props.getGraphResults("no_data", '');
                             console.log("no data");
                             // add even for getresults
                         }
                         else{
-                            this.props.getGraphResults(true, {stockcode: stockcode, response: resp_data_graph.data});
-                            console.log(resp_data_graph.data);
+                            // this.props.getGraphResults(true, {stockcode: stockcode, response: resp_data_graph.data});
+                            // console.log(resp_data_graph.data);
 
-                            this.props.getResults(resp_data_table.data);
+                            // this.props.getResults(resp_data_table.data);
+                            this.props.getResults(true, {stockcode: stockcode, response: resp_data_table.data});
                             console.log(resp_data_table.data)
                         }
                         document.getElementById("stockcode").value = "";
