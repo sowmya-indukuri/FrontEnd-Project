@@ -2,6 +2,7 @@ import React from 'react';
 import InputBox from './InputBox';
 import TableBox from './TableBox';
 import GraphBox from './GraphBox';
+import FilterBox from './FilterBox';
 import News from './News';
 import './App.css';
 
@@ -16,7 +17,8 @@ class App extends React.Component {
     show_Table: false,
     showGraphData: false,
     lsArray: ["AAPL"],  
-    option: []
+    alter_Graph: false,
+    list_codes: []
   };
   // getResults = (data) => {
   //   if(data !== "Symbol not supported"){
@@ -33,15 +35,31 @@ class App extends React.Component {
         this.setState({ 
           table_Values: this.state.table_Values.concat(data.response),
           currentStockCode: data.stockcode,
+          list_codes: this.state.list_codes.concat(data.stockcode),
             showFilterDOM: true,
-            show_Table: true
+            show_Table: true,
+            alter_Graph: false
         }, ()=>{
-          console.log(this.state.currentStockCode);
+          console.log(this.state.list_codes);
+          console.log(this.state.alter_Graph);
 
         });
         
     };
   };
+  filterData = (code, dates) => {
+        this.setState({ 
+          dates: dates,
+          alter_Graph: true,
+          show_Table: true
+        }, ()=>{
+          console.log(this.state.alter_Graph);
+          console.log(this.state.dates);
+
+        });
+
+  };
+  
   // getGraphResults = (code, graph_data) =>{
   //   console.log(code);
   //   console.log(graph_data);
@@ -66,15 +84,32 @@ class App extends React.Component {
             getResults = { this.getResults }>
             </InputBox>
 
+        </div> 
+        <div className={ this.state.showFilterDOM ? "graph-container" : "hidden-table-container" } >
           
-          
+          <FilterBox
+            currentStockCode = {this.state.currentStockCode}
+            filterData = {this.filterData}>
+          </FilterBox>
+    
+        
         </div>
         <div className={ this.state.show_Table ? "graph-container" : "hidden-table-container" } >
-          
+        {/* {this.state.alter_Graph ? */}
                 <GraphBox
-                currentStockCode = {this.state.currentStockCode} >
+                currentStockCode = {this.state.currentStockCode} 
+                dates = {this.state.dates} 
+                alter_Graph={this.state.alter_Graph}
+                >
                 </GraphBox>
-          
+                 {/* :
+                 <GraphBox
+                // currentStockCode = {this.state.currentStockCode} 
+                // dates = {this.state.initial_dates}
+                // >
+                // </GraphBox>  */}
+
+        {/* //  } */}
         </div>
         <div className={ this.state.show_Table ? "table-container" : "hidden-table-container" } >
       
