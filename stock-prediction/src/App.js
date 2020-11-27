@@ -2,7 +2,7 @@ import React from 'react';
 import InputBox from './InputBox';
 import TableBox from './TableBox';
 import GraphBox from './GraphBox';
-// import News from './News';
+import News from './News';
 import './App.css';
 
 
@@ -37,7 +37,11 @@ class App extends React.Component {
             show_Table: true
         }, ()=>{
           
+<<<<<<< HEAD
           console.log(this.state.table_Values);
+=======
+          console.log(this.state.currentStockCode);
+>>>>>>> 550971ed1d6293c4b5c71dfe2ea53dc93dcefb27
 
         });
         
@@ -87,8 +91,14 @@ class App extends React.Component {
           
         </div>
         <div>
+<<<<<<< HEAD
           {/* <News 
             lsArray = { this.state.lsArray}/> */}
+=======
+          <News 
+            currentStockCode = {this.state.currentStockCode}>
+          </News>
+>>>>>>> 550971ed1d6293c4b5c71dfe2ea53dc93dcefb27
 
         </div>
 

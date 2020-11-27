@@ -1,8 +1,51 @@
+// import React from 'react';
+// import axios from 'axios';
+// import './GraphBox.css';
+
+// class GraphBox extends React.Component{
+
+//     componentDidUpdate(pP){
+//         if(pP.currentStockCode != this.props.currentStockCode){
+//             console.log(this.props.currentStockCode);
+//         let startDate = Math.round(new Date().getTime() / 1000);
+//           let endDate = startDate - (72 * 3600);
+                
+//           axios.get('https://finnhub.io/api/v1/stock/candle',{
+//             params:{
+//                 symbol: this.props.currentStockCode,
+//                 resolution: 5,
+//                 from: endDate,
+//                 to: startDate,
+//                 token: 'bu5pnnf48v6qku34c7vg'
+
+//             }})
+//           .then((response) => {
+//             console.log(response);
+//             // var hourly = response.data["hourly"];
+//             //console.log(hourly);
+
+//           })
+//         }
+//     }
+   
+//     render(){
+        
+//         return(
+//             <div className>
+//                 <h2>Graph</h2>
+
+//             </div>
+
+//         );
+//     };
+// }
+
+// export default GraphBox;
 import React from 'react';
 import axios from 'axios';
 import { Line } from "react-chartjs-2";
 // import Plot from 'react-plotly.js';
-// import './GraphBox.css';
+import './GraphBox.css';
 
 class GraphBox extends React.Component{
     constructor(props){
@@ -37,7 +80,7 @@ class GraphBox extends React.Component{
                     {
                       label: "Hourly",
                       data: y,
-                      fill: true,
+                      fill: false,
                       lineTension: 0.1,
                       backgroundColor: "#1C4E80",
                       borderColor: "#1C4E80",
@@ -65,14 +108,16 @@ class GraphBox extends React.Component{
     render(){
         
         return(
-            <div className>
+
+            <div className="graphClass">
                 <h2>Graph</h2>
                 <Line
                 data={this.state.Data}
-                height={15}
-                width ={30}
+                height={300}
+                width ={400}
                 options={{
                   responsive: true,
+                  maintainAspectRatio: false,
     
                   scales: {
                     xAxes: [
