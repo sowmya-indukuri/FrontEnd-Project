@@ -18,7 +18,6 @@ class App extends React.Component {
     lsArray: ["AAPL"],  
     option: []
   };
-
   // getResults = (data) => {
   //   if(data !== "Symbol not supported"){
   //       this.setState({ 
@@ -37,58 +36,18 @@ class App extends React.Component {
             showFilterDOM: true,
             show_Table: true
         }, ()=>{
-          
-<<<<<<< HEAD
-          console.log(this.state.table_Values);
-=======
           console.log(this.state.currentStockCode);
->>>>>>> 550971ed1d6293c4b5c71dfe2ea53dc93dcefb27
 
         });
         
     };
   };
+  // getGraphResults = (code, graph_data) =>{
+  //   console.log(code);
+  //   console.log(graph_data);
 
+  // }
   render(){
-    let graphCardDOM=''
-    if(this.state.showGraphData){
-      // loop through the data and make each graph
-      graphCardDOM = this.state.graphData.map((graphData, index) => {
-          if(graphData.response !== "no_data"){
-              return (
-                  <GraphBox
-                      key = { index }
-                      tableData = { this.state.tableData }
-                      showGraphData = { this.state.showGraphData }
-                      showActiveStockCode = { this.state.activeStockValue }
-                      graphData = { graphData }
-                      filteredData = { this.state.filteredData }
-                      showFilterData = { this.state.showFilterData }>
-                  </GraphBox>
-              );
-          }else{
-              return(
-                  <p key={ index } 
-                     className="no-graph-data-message">
-                      No Data Currently Available. Markets are closed during weekends 
-                      and public holidays. Please filter by previous date.
-                  </p>
-              )
-          };
-      });
-    };
-
-    let optionSelectDOM='';
-    optionSelectDOM = this.state.graphData.map((graphData, index) => {
-      return (
-          <option 
-          value={ graphData.stockValue } 
-          key={ index }
-          selected={ this.state.graphData[this.state.graphData.length - 1] === graphData ? "selected" : "" }>
-            { graphData.stockValue }
-          </option>
-      )
-  });
 
     return (
       <div className="main-container">
@@ -127,31 +86,16 @@ class App extends React.Component {
           
         </div>
         <div>
-<<<<<<< HEAD
-          {/* <News 
-            lsArray = { this.state.lsArray}/> */}
-=======
+
           <News 
             currentStockCode = {this.state.currentStockCode}>
           </News>
->>>>>>> 550971ed1d6293c4b5c71dfe2ea53dc93dcefb27
 
         </div>
 
         {/* <div className={ this.state.show_Table ? "table-container" : "" } >
->>>>>>> sowmya
           <div class="grid-item item0">
-          { 
-            this.state.showGraphData ?
-            <div>
-            <select className="custom-select main__chart-select" onChange={ (e) => this.checkStockCode(e.target.value) }>
-              { optionSelectDOM }
-            </select>
-            { graphCardDOM }
-            </div>
-            : 
-            <p>No stocks found</p>
-          }   
+                <GraphBox />
           </div>
           <div class="grid-item item1">
                 <TableBox 
@@ -176,7 +120,6 @@ class App extends React.Component {
         
           
           
-     
           
 
             

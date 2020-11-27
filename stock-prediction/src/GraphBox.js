@@ -46,13 +46,14 @@ import axios from 'axios';
 import { Line } from "react-chartjs-2";
 // import Plot from 'react-plotly.js';
 import './GraphBox.css';
-
+import moment from 'moment';
 class GraphBox extends React.Component{
     constructor(props){
         super(props);
         this.state = {
         };}
     componentDidUpdate(pP){
+      
         if(pP.currentStockCode != this.props.currentStockCode){
             console.log(this.props.currentStockCode);
             let startDate = Math.round(new Date().getTime() / 1000);
@@ -70,28 +71,37 @@ class GraphBox extends React.Component{
             }})
           .then((response) => {
             // console.log({ JSON.stringify(new Date(response.data.t * 1000)).split('T')[0].replace('"', '') });
+            var unix_time = response.data.t;
+            var i;
+            var x=[];
+              for (i = 0; i < unix_time.length; i++) {
+                var time = moment.unix(unix_time[i]).format("YYYY-MM-DD HH:mm");
+                x.push(time)
+              }
+            // console.log(x);
             var y = response.data.c;
-            var x = response.data.t;
             // console.log(typeof(y[0]));
+            var lowOrHighColor = y[0] < y[y.length - 1] 
+              ? '#81b737' : '#d54f4f';
             this.setState({
                 Data: {
                   labels: x,
                   datasets: [
                     {
-                      label: "Hourly",
+                      label: "Stock Price",
                       data: y,
-                      fill: false,
+                      fill: true,
                       lineTension: 0.1,
-                      backgroundColor: "#1C4E80",
-                      borderColor: "#1C4E80",
+                      backgroundColor: lowOrHighColor,
+                      borderColor: lowOrHighColor,
                       borderCapStyle: "butt",
                       borderJoinStyle: "miter",
-                      pointBorderColor: "#1C4E80",
-                      pointBackgroundColor: "#fff",
+                      pointBorderColor: lowOrHighColor,
+                      pointBackgroundColor: lowOrHighColor,
                       pointBorderWidth: 1,
                       pointHoverRadius: 5,
-                      pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                      pointHoverBorderColor: "rgba(220,220,220,1)",
+                      pointHoverBackgroundColor: lowOrHighColor,
+                      pointHoverBorderColor: lowOrHighColor,
                       pointHoverBorderWidth: 2,
                       pointRadius: 2,
                       pointHitRadius: 10,
@@ -120,20 +130,31 @@ class GraphBox extends React.Component{
                   maintainAspectRatio: false,
     
                   scales: {
-                    xAxes: [
-                      {
-                        display: true,
+                    xAxes: [{
+                      gridLines: {
+                         display: false
                       },
-                    ],
-                    yAxes: [
-                      {
-                        display: true,
+                      ticks: {
+                        display: false //this will remove only the label
                       },
-                    ],
+                      scaleLabel: {
+                        display: true,
+                        labelString: 'Time'
+                      }
+                   }],
+                    yAxes: [{
+                      gridLines: {
+                         display: false
+                      },
+                      scaleLabel: {
+                        display: true,
+                        labelString: 'Stock Price'
+                      }
+                   }],
                   },
                   title:{
                     display:true,
-                    text:'24 hours',
+                    text:'Market Summary of 72 hours',
                     fontSize:20
                   },
                   legend: {
