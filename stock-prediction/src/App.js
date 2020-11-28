@@ -15,7 +15,7 @@ class App extends React.Component {
     showFilterDOM: false,
     showFilterData: false,
     show_Table: false,
-    showGraphData: false,
+    showGraph: false,
     lsArray: ["AAPL"],  
     alter_Graph: false,
     dict_codes: []
@@ -38,6 +38,7 @@ class App extends React.Component {
           dict_codes: this.state.dict_codes.concat({stock_value: data.stockcode}),
             showFilterDOM: true,
             show_Table: true,
+            showGraph: true,
             alter_Graph: false
         }, ()=>{
           console.log(this.state.dict_codes);
@@ -48,17 +49,19 @@ class App extends React.Component {
     };
   };
   filterData = (code, dates) => {
-        console.log(dates.response);
+        console.log(dates);
         this.setState({ 
           dates: dates,
+          currentStockCode: dates.stock_code,
           alter_Graph: true,
-          show_Table: true
+          show_Table: true,
+          showGraph: true
         }, ()=>{
-          console.log(this.state.alter_Graph);
+          console.log(this.state.currentStockCode);
           console.log(this.state.dates);
 
         });
-
+        console.log(this.state.dates);
   };
   
   // getGraphResults = (code, graph_data) =>{
@@ -102,6 +105,7 @@ class App extends React.Component {
                 currentStockCode = {this.state.currentStockCode} 
                 dates = {this.state.dates} 
                 alter_Graph={this.state.alter_Graph}
+
                 >
                 </GraphBox>
                  {/* :
