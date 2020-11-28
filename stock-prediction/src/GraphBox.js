@@ -141,12 +141,12 @@ class GraphBox extends React.Component{
             if (this.props.alter_Graph===false){
               var startDate = Math.round(new Date().getTime() / 1000);
               var endDate = startDate - (72 * 3600);
+              
             }
             else{
               var startDate = this.props.dates.endDate;
               var endDate = this.props.dates.startDate;
             }
-            // console.log(a);
             const pointerToThis = this;
           axios.get('https://finnhub.io/api/v1/stock/candle',{
               
@@ -159,10 +159,13 @@ class GraphBox extends React.Component{
 
             }})
             .then((response) => {
+              // console.log(response);
               // console.log({ JSON.stringify(new Date(response.data.t * 1000)).split('T')[0].replace('"', '') });
+              console.log(response);
               var unix_time = response.data.t;
               var i;
               var x=[];
+              // console.log(unix_time);
                 for (i = 0; i < unix_time.length; i++) {
                   var time = moment.unix(unix_time[i]).format("YYYY-MM-DD HH:mm");
                   x.push(time)
