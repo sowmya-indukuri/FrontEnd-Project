@@ -7,7 +7,74 @@ class TableBox extends React.Component{
 
     state = {
         currency: '$'
-    }
+    };
+
+    // sortTable = (n) => {
+    //     var table, rows, switching, i, x, y, shouldSwitch, order, switchcount = 0;
+    //     table = document.getElementsByTagName("tbody")[0];
+    //     switching = true;
+    //     // var text = document.getElementById(thid).innerHTML;
+    //     // text = text.substring(0,text.length-1); 
+        
+    //     order = "asc";
+    //     console.log(table.childNodes.length);
+    //     console.log(table.childNodes)
+    //     // var rowsRangeVal = document.getElementById("rowsrange").value;
+
+
+
+    
+    
+    //     while (switching) {
+            
+    //         switching = false;
+    //         rows = table.childNodes.length;
+            
+    //         for (i = 0; i < (rows - 1); i++) {
+                
+    //             shouldSwitch = false;
+                
+    //             x = rows[i].getElementsByTagName("TD")[n];
+    //             console.log(x)
+                
+    //             y = rows[i + 1].getElementsByTagName("TD")[n];
+    //             console.log(y)
+            
+            
+    //             if (order == "asc") {
+    //                 if ((+x.innerHTML) > (+y.innerHTML)) {
+                
+    //                     shouldSwitch= true;
+    //                     break;
+    //                 }
+    //             } else if (order == "desc") {
+    //                 if ((+x.innerHTML) < (+y.innerHTML)) {
+                    
+    //                     shouldSwitch = true;
+    //                     break;
+    //                 }
+    //             }
+                
+                
+    //         }
+    //         if (shouldSwitch) {
+        
+    //         rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+    //         switching = true;
+            
+    //         switchcount ++;      
+    //         } else {
+            
+    //         if (switchcount == 0 && order == "asc") {
+    //             order = "desc";
+    //             switching = true;
+    //         }
+    //         }
+    //     }
+  
+        
+    // }
+
     
     render(){
         let tableDataDOM = '';
@@ -22,44 +89,26 @@ class TableBox extends React.Component{
             if(table !== "Symbol not supported"){
                 return (
                     <tr key={ index }>
-                        <th scope="row">{table.stockcode}</th>
+                        <td>{table.stockcode}</td>
                         <td>{ JSON.stringify(new Date(table.t * 1000)).split('T')[0].replace('"', '') }</td>
     
                         {/* Open Price */}
-                        <td className={
-                            this.state.currency + table.o.toFixed(2) > 
-                            this.state.currency + table.pc.toFixed(2) ? 
-                            'green-text font-weight-bold' : 'red-text font-weight-bold'}>{ this.state.currency + table.o.toFixed(2) }</td>
+                        <td className="openrow">{ this.state.currency + table.o.toFixed(2) }</td>
                         
                         {/* Low Price */}
-                        <td className={
-                            this.state.currency + table.l.toFixed(2) > 
-                            this.state.currency + table.pc.toFixed(2) ? 
-                            'green-text font-weight-bold' : 'red-text font-weight-bold'}>{ this.state.currency + table.l.toFixed(2) }</td>
+                        <td className="lowrow">{ this.state.currency + table.l.toFixed(2) }</td>
     
                         {/* High Price */}
-                        <td className={
-                            this.state.currency + table.h.toFixed(2) > 
-                            this.state.currency + table.pc.toFixed(2) ? 
-                            'green-text font-weight-bold' : 'red-text font-weight-bold'}>{ this.state.currency + table.h.toFixed(2) }</td>
+                        <td className="highrow">{ this.state.currency + table.h.toFixed(2) }</td>
     
                         {/* Previous Close Price */}
-                        <td className={ 
-                            this.state.currency + table.c.toFixed(2) <
-                            this.state.currency + table.pc.toFixed(2) ? 
-                            'green-text font-weight-bold' : 'red-text font-weight-bold' }>{ this.state.currency + table.pc.toFixed(2) }</td>
+                        <td className="pcloserow">{ this.state.currency + table.pc.toFixed(2) }</td>
                         
                         {/* Close Price */}
-                        <td className={ 
-                            this.state.currency + table.c.toFixed(2) > 
-                            this.state.currency + table.pc.toFixed(2) ? 
-                            'green-text font-weight-bold' : 'red-text font-weight-bold' }>{ this.state.currency + table.c.toFixed(2) }</td>
+                        <td className="closerow">{ this.state.currency + table.c.toFixed(2) }</td>
                         
                         {/* PC/C percentage */}
-                        <td className={ 
-                            this.state.currency + table.c.toFixed(2) >
-                            this.state.currency + table.pc.toFixed(2) ? 
-                            'green-text font-weight-bold' : 'red-text font-weight-bold' }>{ (100 - (table.pc.toFixed(2)/table.c.toFixed(2))*100).toFixed(2) + '%' }</td>
+                        <td className="lastrow">{ (100 - (table.pc.toFixed(2)/table.c.toFixed(2))*100).toFixed(2) + '%' }</td>
                     </tr>
                 );
             };
@@ -69,11 +118,12 @@ class TableBox extends React.Component{
         return (
             
             <div className="item-table">
-                {/* <h2 className="h6 mb-3">Latest available data:</h2> */}
+                <h5 className="table-heading">Your Companies Latest Stock values:</h5>
                     { 
                         this.props.show_Table 
-                        ? 
-                        <table className="table">
+                        ?
+                    
+                        <table className="table table-striped">
                             <thead>
                                 <tr>
                                 {/* <th scope="col">Stock Code</th>
@@ -86,7 +136,7 @@ class TableBox extends React.Component{
                                 <th scope="col">% From Yesterday</th> */}
                                 <th>Stock Code</th>
                                 <th>Last Updated Data</th>
-                                <th>Open Price</th>
+                                <th onClick={()=> this.sortTable(2)}>Open Price</th>
                                 <th>Low Price</th>
                                 <th>High Price</th>
                                 <th>Previous Close Price</th>

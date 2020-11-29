@@ -50,7 +50,7 @@ class InputBox extends React.Component{
                     this.setState({inputArray: this.state.inputArray.concat(stockcode)},
                     () => {
                         if(resp_data_table.data.c == 0 && resp_data_table.data.h == 0 && resp_data_table.data.l == 0 && resp_data_table.data.o == 0 && resp_data_table.data.pc == 0 && resp_data_table.data.t == 0){
-                            // this.props.getGraphResults("no_data", '');
+                            this.props.getGraphResults("no_data", '');
                             console.log("no data");
                             // add even for getresults
                         }
@@ -92,7 +92,7 @@ class InputBox extends React.Component{
                 <div className="form-group">
                 
                     <input className="form-control" type="text" id="stockcode"  placeholder="Enter Stock Code (e.g. AAPL)"  onKeyUp={ this.convertToUppercase}></input>
-                    <button className="btn btn-dark inputbutton" onClick={ ()=> this.getResults(true,'')}>Submit</button>
+                    <button className="btn btn-dark inputbutton" type="submit" onClick={ ()=> this.getResults(true,'')}><i class="fa fa-search"></i></button>
 
                
 

@@ -160,18 +160,24 @@ class GraphBox extends React.Component{
             console.log(error.response)
             });
         }
+
       }
 
     render(){
         return(
 
             <div className="graphClass">
-                <h2>Price per share of {this.state.symbol} {this.state.text} </h2>
+                <h5>Price per share of {this.state.symbol} {this.state.text} </h5>
                 <Line
                 data={this.state.Data}
                 height={300}
                 width ={400}
                 options={{
+                  layout:{
+                    padding:{
+                      right : 20 
+                    }
+                  },
                   responsive: true,
                   maintainAspectRatio: false,
     
@@ -186,7 +192,9 @@ class GraphBox extends React.Component{
                       scaleLabel: {
                         display: true,
                         labelString: 'Time',
-                        fontColor: 'black'
+                        fontColor: 'rgb(0, 35, 80)',
+                        fontfamily: 'New Century Schoolbook, TeX Gyre Schola, serif',
+                        fontSize: 12
                       }
                    }],
                     yAxes: [{
@@ -196,8 +204,10 @@ class GraphBox extends React.Component{
                       },
                       scaleLabel: {
                         display: true,
-                        labelString: 'Stock Price',
-                        fontColor: 'black'
+                        labelString: 'Stock Price ($)',
+                        fontColor: 'rgb(0, 35, 80)',
+                        fontfamily: 'New Century Schoolbook, TeX Gyre Schola, serif',
+                        fontSize: 12
                       },
                       ticks: {
                         display: true,
@@ -211,8 +221,9 @@ class GraphBox extends React.Component{
                       display: true,
                       position: 'top',
                     labels: {
-                      fontColor: "black",
+                      fontColor: 'rgb(0, 35, 80)',
                       fontSize: 12,
+                      fontfamily: 'New Century Schoolbook, TeX Gyre Schola, serif',
                     },
                   },
                 }}
@@ -222,5 +233,4 @@ class GraphBox extends React.Component{
         );
     };
 }
-
 export default GraphBox;
