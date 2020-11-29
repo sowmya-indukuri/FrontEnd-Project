@@ -37,7 +37,8 @@ class FilterBox extends React.Component{
             return (
                 <option 
                     value={ item.stock_value } 
-                    key={ index } >
+                    key={ index }
+                    selected={ item.stock_value } >
                         { item.stock_value }
                 </option>
             )
