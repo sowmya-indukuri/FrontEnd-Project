@@ -42,6 +42,20 @@ table{
     font-weight: 600;
     /* margin: 6px; */
 }
+@media(max-width:500px){
+    table th{
+        font-size: 15px;
+    }
+    td{
+        font-size: 13px;
+    }
+    .table-heading{
+        font-size: 20px;
+    }
+
+
+}
+
 
   
   
