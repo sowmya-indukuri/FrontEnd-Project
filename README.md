@@ -1,6 +1,13 @@
-FrontEnd-Project
+Stock Price Dashboard
 
 Deployed Site: https://sowmya-indukuri.github.io/FrontEnd-Project/
+
+
+Application Features
+- Allows the user to retrieve particular company stock value upto past 25 years.
+- User can observe the stock value pattern of company over a particular time period.
+- At any point, user gets the open price, low price, high Price, previous close price, current price and percent increase or drop from previous day stock value of given company.
+- In addition to the above features, application allows provides latest news of a given company.
 
 
 STACK/LIBRARIES USED:
