@@ -15,7 +15,8 @@ class App extends React.Component {
     showFilterData: false,
     show_Table: false,
     showGraphData: false,
-    lsArray: ["AAPL"],  
+    lsArray: ["AAPL"], 
+    alter_Graph: false, 
     option: []
   };
   // getResults = (data) => {
@@ -43,11 +44,14 @@ class App extends React.Component {
         
     };
   };
-  // getGraphResults = (code, graph_data) =>{
-  //   console.log(code);
-  //   console.log(graph_data);
+  getGraphResults = (code, graph_data) =>{
+    console.log(code);
+    console.log(graph_data);
+    this.setState({
+      graphData: graph_data
+    });
 
-  // }
+  }
   render(){
 
     return (
@@ -73,8 +77,12 @@ class App extends React.Component {
         <div className={ this.state.show_Table ? "graph-container" : "hidden-table-container" } >
           
                 <GraphBox
-                currentStockCode = {this.state.currentStockCode} >
+                currentStockCode = {this.state.currentStockCode}
+                alter_Graph = {this.state.alter_Graph} >
                 </GraphBox>
+                 {/* <GraphBox
+                graphData = {this.state.graphData} >
+                </GraphBox> */}
           
         </div>
         <div className={ this.state.show_Table ? "table-container" : "hidden-table-container" } >
@@ -86,12 +94,12 @@ class App extends React.Component {
                 </TableBox>
           
         </div>
-        <div>
-          <News 
+        
+        <News 
             currentStockCode = {this.state.currentStockCode}>
-          </News>
+        </News>
 
-        </div>
+        
 
         {/* <div className={ this.state.show_Table ? "table-container" : "" } >
           <div class="grid-item item0">
@@ -116,17 +124,7 @@ class App extends React.Component {
 
           
 
-        
-        
-          
-          
-     
-          
-
-            
-                      
-            
-
+    
       </div>
       
     );
