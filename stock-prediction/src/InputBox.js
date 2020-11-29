@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-// import './InputBox.css';
+import './InputBox.css';
 
 class InputBox extends React.Component{
 

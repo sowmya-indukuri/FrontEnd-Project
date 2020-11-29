@@ -175,7 +175,7 @@ class GraphBox extends React.Component{
                 options={{
                   layout:{
                     padding:{
-                      right : 20 
+                      right : 10 
                     }
                   },
                   responsive: true,

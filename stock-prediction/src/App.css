@@ -213,13 +213,36 @@ video{
   }
   option {
     display: inline-block;
-}
-
+  }
+  .form-group{
+    width: 55%;
+    height: 80%;
+  }
+  .input-container{
+    padding-right: 0pc;
+  }
+  .filter-card-date-div{
+    width: 60%;
+    height: 90%;
+  }
+  #select{
+    display: inline-block;
+    width: 70%;
+  }
+  #filterbutton{
+    display: inline-block;
+    width: 70% !important;
+  } 
 }
 @media(max-width:769px) and (min-width: 500px){
+   .filter-card-date-div{
+    width: 44%;
+    height: 100%;
+  } 
+  
   .input-container{
     margin-left: 40px;
     margin-right: 40px;
   }
-
+  
 }
