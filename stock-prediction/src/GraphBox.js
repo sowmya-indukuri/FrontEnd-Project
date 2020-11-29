@@ -55,6 +55,7 @@ class GraphBox extends React.Component{
     componentDidUpdate(pP){
         if(pP.currentStockCode != this.props.currentStockCode){
             console.log(this.props.currentStockCode);
+            console.log(this.props.alter_Graph)
             let startDate = Math.round(new Date().getTime() / 1000);
             let endDate = startDate - (72 * 3600);
             const pointerToThis = this;
@@ -103,9 +104,44 @@ class GraphBox extends React.Component{
 
           })
         }
+      //   if(pP.graphData != this.props.graphData){
+      //     console.log(this.props.graphData)
+      //     var y = this.props.graphData.response.c;
+      //     var x = this.props.graphData.response.t;
+      //     this.setState({
+      //               Data: {
+      //                 labels: x,
+      //                 datasets: [
+      //                   {
+      //                     label: "Hourly",
+      //                     data: y,
+      //                     fill: false,
+      //                     lineTension: 0.1,
+      //                     backgroundColor: "#1C4E80",
+      //                     borderColor: "#1C4E80",
+      //                     borderCapStyle: "butt",
+      //                     borderJoinStyle: "miter",
+      //                     pointBorderColor: "#1C4E80",
+      //                     pointBackgroundColor: "#fff",
+      //                     pointBorderWidth: 1,
+      //                     pointHoverRadius: 5,
+      //                     pointHoverBackgroundColor: "rgba(75,192,192,1)",
+      //                     pointHoverBorderColor: "rgba(220,220,220,1)",
+      //                     pointHoverBorderWidth: 2,
+      //                     pointRadius: 2,
+      //                     pointHitRadius: 10,
+      //                   },
+      //                 ],
+      //               },
+      // });
+
+
+        
     }
    
     render(){
+      
+      
         
         return(
             <div className="graphClass">
