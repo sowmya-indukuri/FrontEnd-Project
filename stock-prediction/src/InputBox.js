@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import './InputBox.css';
+// import './InputBox.css';
 
 class InputBox extends React.Component{
 
@@ -36,16 +36,16 @@ class InputBox extends React.Component{
                         }
                     });
 
-                    var resp_data_graph = await axios.get('https://finnhub.io/api/v1/stock/candle',{
-                        params:{
-                            symbol: stockcode,
-                            resolution: 5,
-                            from: endDate,
-                            to: startDate,
-                            token: 'bu5pnnf48v6qku34c7vg'
+                    // var resp_data_graph = await axios.get('https://finnhub.io/api/v1/stock/candle',{
+                    //     params:{
+                    //         symbol: stockcode,
+                    //         resolution: 5,
+                    //         from: endDate,
+                    //         to: startDate,
+                    //         token: 'bu5pnnf48v6qku34c7vg'
 
-                        }
-                    });
+                    //     }
+                    // });
 
                     this.setState({inputArray: this.state.inputArray.concat(stockcode)},
                     () => {
@@ -59,6 +59,7 @@ class InputBox extends React.Component{
                             // console.log(resp_data_graph.data);
 
                             // this.props.getResults(resp_data_table.data);
+
                             resp_data_table.data.stockcode = stockcode;
                             this.props.getResults(true, {stockcode: stockcode, response: resp_data_table.data});
                             console.log(resp_data_table.data)

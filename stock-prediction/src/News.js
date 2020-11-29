@@ -8,7 +8,9 @@ class News extends React.Component{
     //     super(props);
     // }
     state ={
-        Data: "***Provide a company stock ticker for latest news***"
+
+        Data: "**Provide a company stock ticker for latest news**"
+
 
     }
 
