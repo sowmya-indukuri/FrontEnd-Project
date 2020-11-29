@@ -38,7 +38,7 @@ class FilterBox extends React.Component{
                 <option 
                     value={ item.stock_value } 
                     key={ index }
-                    selected={ item.stock_value } >
+                    defaultValue={ item.stock_value } >
                         { item.stock_value }
                 </option>
             )
@@ -46,22 +46,41 @@ class FilterBox extends React.Component{
         return (
             
                 <div className="form-group">
-                    <select className="custom-select filter-select">
+                    <select className="custom-select filter-select" id='select' aria-label="Search">
                         { DOM }
                     </select>
                     <div className="d-flex filter-card-date mt-2">
                         <div className="filter-card-date-div">
                             <label className="mb-0">Start Date:</label>
-                            <input className="form-control start-date" type="date" id='startdate' ></input>
+                            <input className="form-control start-date" aria-label="Search" type="date" id='startdate' ></input>
                         </div>
                         <div className="filter-card-date-div">
                             <label className="mb-0">End Date:</label>
-                            <input className="form-control end-date" type="date" id='enddate'></input>
+                            <input className="form-control end-date" aria-label="Search" type="date" id='enddate'></input>
                         </div>
                     </div>
-                    <button className="btn btn-secondary w-100 mt-3 btn-filter" onClick={ this.filter }>Filter</button>
+                    <button id='filterbutton' className="btn btn-secondary w-100 mt-3 btn-filter" onClick={ this.filter }>Filter</button>
 
                 </div>
+                // <div class="row">
+                //     <div class="col-md-9">
+                //     <select class="form-group custom-select filter-select">
+                //         {DOM}
+                //     </select>
+                //     <div class="d-flex filter-card-date mt-2">
+                //         <div class="filter-card-date-div">
+                //             <label class="mb-0">Start Date:</label>
+                //             <input class="form-control start-date" type="date" id='startdate' ></input>
+                //         </div>
+                //         <div class="filter-card-date-div">
+                //             <label class="mb-0">End Date:</label>
+                //             <input class="form-control end-date" type="date" id='enddate'></input>
+                //         </div>
+                //     </div>
+                //     <button class="btn btn-secondary w-100 mt-3 btn-filter" onClick={ this.filter }>Filter</button>
+				// 	</div>
+
+                // </div>
             
         );
     }
