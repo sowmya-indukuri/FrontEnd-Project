@@ -161,7 +161,7 @@ class GraphBox extends React.Component{
         return(
 
             <div className="graphClass">
-                <h5>Price per share of {this.state.symbol} {this.state.text} </h5>
+                <h5> </h5>
                 <Line
                 data={this.state.Data}
                 height={300}
@@ -169,7 +169,7 @@ class GraphBox extends React.Component{
                 options={{
                   layout:{
                     padding:{
-                      right : 20 
+                      right : 10 
                     }
                   },
                   responsive: true,
