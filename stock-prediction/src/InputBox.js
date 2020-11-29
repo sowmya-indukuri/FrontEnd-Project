@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-// import './InputBox.css';
+import './InputBox.css';
 
 class InputBox extends React.Component{
 
@@ -90,9 +90,9 @@ class InputBox extends React.Component{
         return (
             
                 <div className="form-group">
-                
-                    <input className="form-control" type="text" id="stockcode"  placeholder="Enter Stock Code (e.g. AAPL)"  onKeyUp={ this.convertToUppercase}></input>
-                    <button className="btn btn-dark inputbutton" type="submit" onClick={ ()=> this.getResults(true,'')}><i class="fa fa-search"></i></button>
+                    {/* <label for="stockcode" class="visuallyhidden">Stock Code </label> */}
+                    <input className="form-control" type="text" id="stockcode" aria-label="Search"  placeholder="Enter Stock Code (e.g. AAPL)"  onKeyUp={ this.convertToUppercase}></input>
+                    <button className="btn btn-dark inputbutton" aria-label="Search" type="submit" onClick={ ()=> this.getResults(true,'')}><i className="fa fa-search"></i></button>
 
                
 
