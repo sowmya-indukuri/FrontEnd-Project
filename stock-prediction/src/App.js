@@ -4,11 +4,13 @@ import TableBox from './TableBox';
 import GraphBox from './GraphBox';
 import FilterBox from './FilterBox';
 import News from './News';
+// import BackgroundVideo from './BackgroundVideo';
 import './App.css';
-
+import video from './wave.mp4';
 
 class App extends React.Component {
   state = {
+    videoSource : video,
     table_Values: [],
     graphData: [],
     currentStockCode: '',
@@ -72,8 +74,12 @@ class App extends React.Component {
   render(){
 
     return (
-      <div className="main-container">
+      <div>
 
+            <video autoPlay="autoplay" loop="loop" muted  >
+                <source src={this.state.videoSource} type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
         <div className="heading-container">
           
               <h1 className="pageheading">Stock Price Dashboard</h1>

@@ -31,7 +31,7 @@ class GraphBox extends React.Component{
                 resolution: 5,
                 from: endDate,
                 to: startDate,
-                token: 'bqhq9i7rh5rbubolrqd0'
+                token: 'bu5pnnf48v6qku34c7vg'
 
             }})
             .then((response) => {
@@ -103,7 +103,7 @@ class GraphBox extends React.Component{
               resolution: 5,
               from: endDate,
               to: startDate,
-              token: 'bqhq9i7rh5rbubolrqd0'
+              token: 'bu5pnnf48v6qku34c7vg'
 
           }})
           .then((response) => {
@@ -181,27 +181,31 @@ class GraphBox extends React.Component{
                          display: false
                       },
                       ticks: {
-                        display: true //this will remove only the label
+                        display: false //this will remove only the label
                       },
                       scaleLabel: {
                         display: true,
-                        labelString: 'Time'
+                        labelString: 'Time',
+                        fontColor: 'black'
                       }
                    }],
                     yAxes: [{
                       gridLines: {
-                         display: false
+                         display: false,
+                         
                       },
                       scaleLabel: {
                         display: true,
-                        labelString: 'Stock Price'
-                      }
-                   }],
-                  },
-                  title:{
-                    display:true,
-                    text:'Market Summary of 72 hours',
-                    fontSize:20
+                        labelString: 'Stock Price',
+                        fontColor: 'black'
+                      },
+                      ticks: {
+                        display: true,
+                        fontColor: 'black'
+
+                   }
+                  }
+                ],
                   },
                   legend: {
                       display: true,
