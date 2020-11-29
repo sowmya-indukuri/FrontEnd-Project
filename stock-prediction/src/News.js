@@ -67,8 +67,15 @@ class News extends React.Component{
             <div className="container footer">
                 
                         <div className="d-flex breaking-news">
-                            <div id="ticker" className="ticker d-flex news"><span className="d-flex align-items-center">&nbsp;NEWS</span></div>
-                                <marquee className="news-scroll" behavior="scroll" direction="left"> <a href="#"> {this.state.Data}</a> </marquee>
+                            <div id="ticker" 
+                                className="ticker d-flex news">
+                                <span className="d-flex align-items-center">&nbsp;NEWS</span>
+                            </div>
+                            <marquee className="news-scroll" 
+                                    behavior="scroll" 
+                                    direction="left"> 
+                                    <a href="#"> {this.state.Data}</a>
+                            </marquee>
                         </div>
           
             </div>

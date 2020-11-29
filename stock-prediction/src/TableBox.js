@@ -58,14 +58,30 @@ class TableBox extends React.Component {
           <table className="table table-striped">
             <thead>
               <tr>
-                <th>Stock Code</th>
-                <th>Last Updated Data</th>
-                <th>Open Price</th>
-                <th>Low Price</th>
-                <th>High Price</th>
-                <th>Previous Close Price</th>
-                <th>Current Price</th>
-                <th>% From Yesterday</th>
+                <th>
+                  Stock Code
+                </th>
+                <th>
+                  Last Updated Data
+                </th>
+                <th>
+                  Open Price
+                </th>
+                <th>
+                  Low Price
+                </th>
+                <th>
+                  High Price
+                </th>
+                <th>
+                  Previous Close Price
+                </th>
+                <th>
+                  Current Price
+                </th>
+                <th>
+                  % From Yesterday
+                </th>
               </tr>
             </thead>
             <tbody>{tableDataDOM}</tbody>
