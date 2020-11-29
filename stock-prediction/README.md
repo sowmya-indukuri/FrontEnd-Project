@@ -1,1 +1,1 @@
-GO back to the main repo for README
+Go back to the main repositority for README
