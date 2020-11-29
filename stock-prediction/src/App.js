@@ -89,7 +89,7 @@ class App extends React.Component {
             </InputBox>
 
         </div> 
-        <div className={ this.state.showFilterDOM ? "graph-container" : "hidden-table-container" } >
+        <div className={ this.state.showFilterDOM ? "filter-container" : "hidden-table-container" } >
           
           <FilterBox
             currentStockCode = {this.state.currentStockCode}
