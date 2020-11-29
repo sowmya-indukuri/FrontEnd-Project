@@ -6,9 +6,7 @@ import FilterBox from './FilterBox';
 import News from './News';
 // import BackgroundVideo from './BackgroundVideo';
 import './App.css';
-
 import video from './wave.mp4';
-
 
 class App extends React.Component {
   state = {
@@ -19,14 +17,9 @@ class App extends React.Component {
     showFilterDOM: false,
     showFilterData: false,
     show_Table: false,
-
     showGraph: false,  
     alter_Graph: false,
     dict_codes: []
-
-
-    showGraphData: false,
-    showNewsData: false,
 
   };
   // getResults = (data) => {
@@ -47,12 +40,8 @@ class App extends React.Component {
           dict_codes: this.state.dict_codes.concat({stock_value: data.stockcode}),
             showFilterDOM: true,
             show_Table: true,
-
             showGraph: true,
             alter_Graph: false
-
-            showNewsData: true
-
         }, ()=>{
           console.log(this.state.dict_codes);
           console.log(this.state.alter_Graph);
@@ -87,27 +76,16 @@ class App extends React.Component {
   }
   render(){
     return (
-
       <div>
             <video autoPlay="autoplay" loop="loop" muted  >
                 <source src={this.state.videoSource} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
         <div className="heading-container">         
-
-      <div className="main-container">
-        {/* <Navbar bg="light">
-        <Navbar.Brand href="#home">Brand link</Navbar.Brand>
-        </Navbar> */}
-
-        <div className="heading-container">
-          
-
               <h1 className="pageheading">Stock Price Dashboard</h1>
         </div>
         <div className="input-container">
             <InputBox 
-
               getResults = { this.getResults }>
             </InputBox>
         </div> 
@@ -117,9 +95,8 @@ class App extends React.Component {
             filterData = {this.filterData}
             dict_codes = {this.state.dict_codes}>
           </FilterBox>        
-
         </div>
-        <div className={ this.state.show_Table ? "graph-container" : "hidden-table-container" } >
+        <div className={ this.state.show_Table ? "graph-container" : "hidden-table-container" } tabindex="0" >
                 <GraphBox
                 currentStockCode = {this.state.currentStockCode} 
                 dates = {this.state.dates} 
@@ -127,27 +104,17 @@ class App extends React.Component {
                 >
                 </GraphBox>                
         </div>
-        <div className={ this.state.show_Table ? "table-container" : "hidden-table-container" } >     
+        <div className={ this.state.show_Table ? "table-container" : "hidden-table-container" } tabindex="0">     
                 <TableBox 
                 show_Table = { this.state.show_Table }
                 table_Values = { this.state.table_Values }
                 >
-
                 </TableBox>          
         </div>       
-
         <News 
-            currentStockCode = {this.state.currentStockCode}
-            
-            >
+            currentStockCode = {this.state.currentStockCode}>
         </News>
-
-        
-
-    
-      </div>
-      
-
+      </div>     
     );
   } 
 }
