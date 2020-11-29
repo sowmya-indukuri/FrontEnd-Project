@@ -14,8 +14,6 @@ class FilterBox extends React.Component{
         {
             this.props.filterData(true, {stock_code:stock_code,
                  startDate: startDate, endDate: endDate});
-            console.log(startDate);
-            console.log(endDate);
         }
         else{
             document.querySelector("input.start-date").value = '';
