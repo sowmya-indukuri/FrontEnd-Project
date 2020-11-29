@@ -4,6 +4,7 @@ import TableBox from './TableBox';
 import GraphBox from './GraphBox';
 import News from './News';
 import './App.css';
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink, Collapse,NavbarToggler } from "reactstrap";
 
 
 class App extends React.Component {
@@ -15,9 +16,9 @@ class App extends React.Component {
     showFilterData: false,
     show_Table: false,
     showGraphData: false,
-    lsArray: ["AAPL"], 
+    showNewsData: false,
     alter_Graph: false, 
-    option: []
+    
   };
   // getResults = (data) => {
   //   if(data !== "Symbol not supported"){
@@ -35,7 +36,8 @@ class App extends React.Component {
           table_Values: this.state.table_Values.concat(data.response),
           currentStockCode: data.stockcode,
             showFilterDOM: true,
-            show_Table: true
+            show_Table: true,
+            showNewsData: true
         }, ()=>{
           
           console.log(this.state.currentStockCode);
@@ -56,6 +58,9 @@ class App extends React.Component {
 
     return (
       <div className="main-container">
+        {/* <Navbar bg="light">
+        <Navbar.Brand href="#home">Brand link</Navbar.Brand>
+        </Navbar> */}
 
         <div className="heading-container">
           
@@ -68,8 +73,13 @@ class App extends React.Component {
         <div className="input-container">
           
             <InputBox 
-            getResults = { this.getResults }>
+            getResults = { this.getResults }
+            >
             </InputBox>
+            {/* <InputBox 
+            getResults = { this.getResults }
+            getGraphResults = {this.getGraphResults}>
+            </InputBox> */}
 
           
           
@@ -94,10 +104,27 @@ class App extends React.Component {
                 </TableBox>
           
         </div>
-        
+        {/* {
+          this.state.showNewsData
+          ?
+          <News 
+            currentStockCode = {this.state.currentStockCode}
+            >
+          </News>
+          :
+          <p></p>
+
+        } */}
         <News 
-            currentStockCode = {this.state.currentStockCode}>
+            currentStockCode = {this.state.currentStockCode}
+            
+            >
         </News>
+
+        
+        
+        
+   
 
         
 
